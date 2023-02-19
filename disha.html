@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+<meta charset="utf-8">
+<title>JavaScript form validation - checking non-empty</title>
+
+</head>
+
+<body bgcolor="eae354">
+<h1>Enter a No :</h1>
+<form name="form1" action="#">
+&nbsp;&nbsp;<input style="height:67px;" type='text' id="txt" name='text1'/>
+<br>
+<input style="width:150px;" class="button" type="submit" name="submit" value="Submit" onclick="phonenumber(document.form1.text1)"/>
+</form>
+<script>
+
+function phonenumber(inputtxt)
+{
+var phone=document.getElementById("txt").value;
+var country=document.getElementById("txt").value.substring(0,3);
+var phoneno=document.getElementById("txt").value.substring(3);
+var phn = parseInt(phoneno);
+let regex = new RegExp(/(0|91)?[6-9][0-9]{9}/);
+var res=Number.isInteger(phn);
+if(phone==''){
+ alert("Please enter a Phone No ");
+     return false;
+}else{
+  if(regex.test(phone) == true && res==true && country=='+91')
+  {
+		alert("It is a Valid Indian No");
+      	return true;
+
+  }
+  else
+  {
+     alert("It is not a valid indian No");
+     return false;
+  }
+}
+
+  }
+</script>
+</body>
+</html>
